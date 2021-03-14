@@ -8,7 +8,6 @@ interface IChatHistoryProps {
 }
 
 class ChatHistory extends Component<IChatHistoryProps> {
-
     render() {
         const messages = this.props.chatHistory.map((msg, index) => (
             <p key={index}>{msg.data}</p>

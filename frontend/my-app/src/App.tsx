@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, KeyboardEvent } from 'react';
 import './App.scss';
 import { connect, sendMsg } from "./api"
 import Header from './components/Header/Header'
 import ChatHistory from './components/ChatHistory/ChatHistory'
+import ChatInput from './components/ChatInput';
 
 interface IProps {
 
@@ -33,8 +34,11 @@ class App extends Component<IProps, IState> {
     });
   }
 
-  send = () => {
-    sendMsg("hello");
+  send = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      sendMsg((event.target as HTMLInputElement).value);
+      (event.target as HTMLInputElement).value = "";
+    }
   };
 
   render() {
@@ -42,7 +46,7 @@ class App extends Component<IProps, IState> {
       <div className="App">
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
-        <button onClick={this.send}>Hit</button>
+        <ChatInput send={this.send} />
       </div>
     )
   }
