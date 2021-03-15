@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+import Message from "../Message";
 import './ChatHistory.scss'
 
 interface IChatHistoryProps {
     children?: React.ReactNode;
     props?: any;
-    chatHistory: any[];
+    chatHistory: string[];
 }
 
 class ChatHistory extends Component<IChatHistoryProps> {
     render() {
-        const messages = this.props.chatHistory.map((msg, index) => (
-            <p key={index}>{msg.data}</p>
-        ));
+        console.log(this.props.chatHistory);
+        const messages = this.props.chatHistory.map(msg => <Message message={msg} />);
 
         return (
             <div className="ChatHistory">
@@ -19,7 +19,7 @@ class ChatHistory extends Component<IChatHistoryProps> {
                 {messages}
             </div>
         );
-    }
+    };
 }
 
 export default ChatHistory;
