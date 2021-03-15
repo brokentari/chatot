@@ -4,21 +4,26 @@ import "./Message.scss";
 interface IMessageProps {
     childnre?: React.ReactNode;
     props?: any;
-    message: string;
+    message: MessageEvent;
+    key: string;
 }
 
 interface IMessageState {
-    message?: string;
+    message: string;
 }
 
 class Message extends Component<IMessageProps, IMessageState> {
     constructor(props: any) {
         super(props);
-        let temp = this.props.message;
+
+
+        let temp = JSON.parse(this.props.message.data);
 
         this.state = {
-            message: temp
+            message: temp.body
         };
+
+        console.log(this.state.message);
     }
 
     render() {

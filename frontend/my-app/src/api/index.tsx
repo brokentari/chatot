@@ -1,7 +1,7 @@
 const socket = new WebSocket('ws://localhost:8080/ws');
 
 
-let connect = (cb: (a: string) => void) => {
+let connect = (cb: (a: MessageEvent) => void) => {
     console.log("connecting...");
 
     socket.onopen = () => {
@@ -10,8 +10,8 @@ let connect = (cb: (a: string) => void) => {
 
     socket.onmessage = msg => {
         console.log(msg);
-        const obj = JSON.parse(msg.data);
-        cb(obj.body);
+        //const obj = JSON.parse(msg.data);
+        cb(msg);
     };
 
     socket.onclose = event => {

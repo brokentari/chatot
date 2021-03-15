@@ -10,7 +10,7 @@ interface IProps {
 }
 
 interface IState {
-  chatHistory: string[];
+  chatHistory: MessageEvent[];
 }
 
 class App extends Component<IProps, IState> {
@@ -23,12 +23,12 @@ class App extends Component<IProps, IState> {
   }
 
   componentDidMount() {
-    connect((msg: string) => {
+    connect((msg: MessageEvent) => {
       console.log("new message");
 
-      this.setState(prevState => ({
+      this.setState({
         chatHistory: [...this.state.chatHistory, msg]
-      }))
+      })
 
       console.log(this.state);
     });
